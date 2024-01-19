@@ -9,12 +9,11 @@ RUN docker-php-ext-install pdo mysqli pdo_mysql zip;
 
 #RUN pecl install xdebug && docker-php-ext-enable xdebug
 RUN curl https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
-RUN composer self-update 2.6.6
+RUN composer self-update 2.5.8
 
-RUN wget --no-check-certificate https://phar.phpunit.de/phpunit-6.5.3.phar && \
-    mv phpunit*.phar phpunit.phar && \
-    chmod +x phpunit.phar && \
-    mv phpunit.phar /usr/local/bin/phpunit
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN composer global require phpunit/phpunit ^10.5
 
 RUN usermod -u 1000 www-data
 RUN usermod -a -G www-data root
