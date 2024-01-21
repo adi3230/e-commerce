@@ -1,13 +1,13 @@
-FROM php:8.3-fpm
+FROM php:8.2-fpm
 
 RUN apt-get update \
   && apt-get install -y libzip-dev git wget --no-install-recommends \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN docker-php-ext-install pdo mysqli pdo_mysql zip;
+RUN docker-php-ext-install pdo pdo_mysql zip;
 
-#RUN pecl install xdebug && docker-php-ext-enable xdebug
+RUN pecl install xdebug && docker-php-ext-enable xdebug
 RUN curl https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 RUN composer self-update 2.5.8
 
