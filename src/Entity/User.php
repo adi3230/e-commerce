@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User
@@ -11,21 +12,27 @@ class User
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #Assert|NotBlank
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #Assert|NotBlank
     private ?string $first_name = null;
 
     #[ORM\Column(length: 255)]
+    #Assert|NotBlank
     private ?string $last_name = null;
 
     #[ORM\Column(length: 255)]
+    #Assert|NotBlank
     private ?string $username = null;
 
     #[ORM\Column(length: 255)]
+    #Assert|NotBlank
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
+    #Assert|NotBlank
     private ?string $password = null;
 
     #[ORM\Column(length: 255, nullable: true)]
